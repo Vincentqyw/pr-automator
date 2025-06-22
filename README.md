@@ -84,77 +84,77 @@ gh auth login
 
 1. **Configure your AI provider:**
    ```bash
-   prc config
+   pra config
    ```
    This will start an interactive setup process.
 
 2. **Or configure manually:**
    ```bash
-   prc config AI_PROVIDER "deepseek"
-   prc config API_KEY "your-api-key-here"
-   prc config MODEL "deepseek-chat"
+   pra config AI_PROVIDER "deepseek"
+   pra config API_KEY "your-api-key-here"
+   pra config MODEL "deepseek-chat"
    ```
 
 3. **Check your configuration:**
    ```bash
-   prc status
+   pra status
    ```
 
 ### Usage
 
 ```bash
 # Create a PR with AI-generated description
-prc create
+pra create
 
 # Preview PR description without creating (dry run)
-prc create --dry-run
+pra create --dry-run
 ```
 
 ## 📋 Commands
 
-### `prc config [key] [value]`
+### `pra config [key] [value]`
 
 Configure AI provider settings.
 
 ```bash
 # Interactive configuration
-prc config
+pra config
 
 # Set specific values
-prc config AI_PROVIDER "openai"
-prc config API_KEY "sk-..."
-prc config MODEL "gpt-4-turbo"
+pra config AI_PROVIDER "openai"
+pra config API_KEY "sk-..."
+pra config MODEL "gpt-4-turbo"
 
 # View specific config
-prc config AI_PROVIDER
+pra config AI_PROVIDER
 ```
 
-### `prc list-providers`
+### `pra list-providers`
 
 List all available AI providers with descriptions.
 
 ```bash
-prc list-providers
+pra list-providers
 ```
 
-### `prc status`
+### `pra status`
 
 Show current configuration status and readiness.
 
 ```bash
-prc status
+pra status
 ```
 
-### `prc create [options]`
+### `pra create [options]`
 
 Create a Pull Request with AI-generated description.
 
 ```bash
 # Create PR
-prc create
+pra create
 
 # Dry run (preview without creating)
-prc create --dry-run
+pra create --dry-run
 ```
 
 ## 🤖 Supported AI Providers
@@ -250,7 +250,7 @@ npm install
 npm link
 
 # Run the tool
-prc --help
+pra --help
 ```
 
 ## 🔑 API Keys
@@ -258,22 +258,22 @@ prc --help
 ### DeepSeek
 1. Visit [DeepSeek Console](https://platform.deepseek.com/)
 2. Create an account and get your API key
-3. Configure: `prc config AI_PROVIDER "deepseek"`
+3. Configure: `pra config AI_PROVIDER "deepseek"`
 
 ### OpenAI
 1. Visit [OpenAI Platform](https://platform.openai.com/api-keys)
 2. Create an API key
-3. Configure: `prc config AI_PROVIDER "openai"`
+3. Configure: `pra config AI_PROVIDER "openai"`
 
 ### OpenRouter
 1. Visit [OpenRouter](https://openrouter.ai/)
 2. Get your API key
-3. Configure: `prc config AI_PROVIDER "openrouter"`
+3. Configure: `pra config AI_PROVIDER "openrouter"`
 
 ### Google Gemini
 1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
 2. Create an API key
-3. Configure: `prc config AI_PROVIDER "gemini"`
+3. Configure: `pra config AI_PROVIDER "gemini"`
 
 ## 🤝 Contributing
 
@@ -296,8 +296,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Run `git --version` and `gh --version` to verify
 
 **"Configuration is incomplete"**
-- Run `prc config` to set up your AI provider
-- Check `prc status` for current configuration
+- Run `pra config` to set up your AI provider
+- Check `pra status` for current configuration
 
 **"API analysis failed"**
 - Verify your API key is correct
@@ -310,9 +310,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Getting Help
 
-- Check the status: `prc status`
-- List available providers: `prc list-providers`
-- View help: `prc --help`
+- Check the status: `pra status`
+- List available providers: `pra list-providers`
+- View help: `pra --help`
 
 ## 🙏 Acknowledgments
 

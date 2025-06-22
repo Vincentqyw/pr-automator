@@ -4,11 +4,19 @@
   "description": "AI-powered Pull Request description generator with multi-provider support",
   "main": "src/index.js",
   "bin": {
-    "prc": "src/cli.js"
+    "pra": "src/cli.js"
   },
   "scripts": {
     "start": "node src/cli.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node src/cli.js",
+    "pra": "node src/cli.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "help": "node src/cli.js --help",
+    "providers": "node src/cli.js list-providers",
+    "status": "node src/cli.js status",
+    "config": "node src/cli.js config",
+    "create": "node src/cli.js create",
+    "create:dry": "node src/cli.js create --dry-run"
   },
   "keywords": [
     "pull-request",
@@ -22,9 +30,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",
+    "chalk": "^4.1.2",
     "commander": "^11.1.0",
-    "inquirer": "^9.2.12",
-    "chalk": "^4.1.2"
+    "inquirer": "^9.2.12"
   },
   "engines": {
     "node": ">=14.0.0"
@@ -37,4 +45,4 @@
     "url": "https://github.com/vincentqyw/pr-automator/issues"
   },
   "homepage": "https://github.com/vincentqyw/pr-automator#readme"
-} 
+}
