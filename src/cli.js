@@ -18,7 +18,7 @@ function setupEnvVars() {
 
 // Configuration commands
 program
-  .name('prc')
+  .name('pra')
   .description('AI-powered Pull Request description generator')
   .version('1.0.0');
 
@@ -89,7 +89,7 @@ program
     if (config.isComplete()) {
       console.log(chalk.green('\n✅ Configuration is complete and ready to use!'));
     } else {
-      console.log(chalk.red('\n❌ Configuration is incomplete. Please run "prc config" to set up.'));
+      console.log(chalk.red('\n❌ Configuration is incomplete. Please run "pra config" to set up.'));
     }
   });
 
@@ -108,7 +108,7 @@ program
     
     // Check configuration
     if (!config.isComplete()) {
-      console.error(chalk.red('❌ Configuration is incomplete. Please run "prc config" to set up.'));
+      console.error(chalk.red('❌ Configuration is incomplete. Please run "pra config" to set up.'));
       process.exit(1);
     }
     
@@ -223,9 +223,9 @@ program
     console.log(chalk.gray('Use --help to see available commands'));
     
     if (!config.isComplete()) {
-      console.log(chalk.yellow('\n⚠️  Configuration incomplete. Run "prc config" to set up.'));
+      console.log(chalk.yellow('\n⚠️  Configuration incomplete. Run "pra config" to set up.'));
     } else {
-      console.log(chalk.green('\n✅ Ready to create PRs! Run "prc create" to get started.'));
+      console.log(chalk.green('\n✅ Ready to create PRs! Run "pra create" to get started.'));
     }
   });
 
