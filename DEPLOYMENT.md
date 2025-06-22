@@ -48,7 +48,6 @@ npm version major  # 1.0.0 -> 2.0.0
    ```
 3. 创建并推送标签：
    ```bash
-   git tag v1.1.0
    git push origin v1.1.0
    ```
 4. 在 GitHub 上创建 Release：
