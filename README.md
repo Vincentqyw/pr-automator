@@ -1,5 +1,11 @@
 # PR Automator 🤖
 
+[![npm version](https://badge.fury.io/js/pr-automator.svg)](https://badge.fury.io/js/pr-automator)
+[![Node.js Version](https://img.shields.io/node/v/pr-automator.svg)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/vincentqyw/pr-automator/npm-publish.yml?branch=main)](https://github.com/vincentqyw/pr-automator/actions)
+[![GitHub stars](https://img.shields.io/github/stars/vincentqyw/pr-automator.svg?style=social&label=Star)](https://github.com/vincentqyw/pr-automator)
+[![GitHub forks](https://img.shields.io/github/forks/vincentqyw/pr-automator.svg?style=social&label=Fork)](https://github.com/vincentqyw/pr-automator)
 > AI-powered Pull Request description generator with multi-provider support
 
 Automatically generate professional Pull Request descriptions using AI. Supports multiple AI providers including DeepSeek, OpenAI, OpenRouter, and Google Gemini.

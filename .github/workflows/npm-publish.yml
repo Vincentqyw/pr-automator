@@ -1,0 +1,120 @@
+name: Publish to NPM
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Verify package.json version matches tag
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          TAG_VERSION=${TAG_VERSION#refs/tags/}
+          
+          echo "Package version: $PACKAGE_VERSION"
+          echo "Tag version: $TAG_VERSION"
+          
+          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
+            echo "❌ Package version ($PACKAGE_VERSION) does not match tag version ($TAG_VERSION)"
+            exit 1
+          fi
+          echo "✅ Version check passed"
+          
+      - name: Run tests
+        run: npm test
+        
+      - name: Check if package exists on NPM
+        id: check-package
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          
+          if npm view $PACKAGE_NAME@$PACKAGE_VERSION version > /dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "⚠️  Package $PACKAGE_NAME@$PACKAGE_VERSION already exists on NPM"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "✅ Package $PACKAGE_NAME@$PACKAGE_VERSION does not exist on NPM"
+          fi
+          
+      - name: Publish to NPM
+        if: steps.check-package.outputs.exists != 'true'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Skip publish (already exists)
+        if: steps.check-package.outputs.exists == 'true'
+        run: |
+          echo "⏭️  Skipping publish - package already exists on NPM"
+          
+      - name: Update GitHub Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: release } = await github.rest.repos.getReleaseByTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: context.ref.replace('refs/tags/', '')
+            });
+            
+            const packageName = require('./package.json').name;
+            const packageVersion = require('./package.json').version;
+            
+            const npmUrl = `https://www.npmjs.com/package/${packageName}/v/${packageVersion}`;
+            
+            const body = `## What's Changed
+            
+            This release includes the latest updates and improvements.
+            
+            ### 📦 Installation
+            
+            \`\`\`bash
+            npm install -g ${packageName}@${packageVersion}
+            \`\`\`
+            
+            ### 🚀 Usage
+            
+            \`\`\`bash
+            pra --help
+            \`\`\`
+            
+            ### 📋 Available Commands
+            
+            - \`pra config\` - Configure AI provider settings
+            - \`pra create\` - Create a PR with AI-generated description
+            - \`pra list-providers\` - List available AI providers
+            - \`pra status\` - Show current configuration status
+            
+            ### 🔗 Links
+            
+            - [NPM Package](${npmUrl})
+            - [GitHub Repository](https://github.com/${context.repo.owner}/${context.repo.repo})
+            - [Documentation](https://github.com/${context.repo.owner}/${context.repo.repo}#readme)`;
+            
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: release.id,
+              body: body
+            });
+            
+            console.log('✅ GitHub release updated successfully'); 
