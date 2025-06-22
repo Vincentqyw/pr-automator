@@ -10,6 +10,21 @@
 
 Automatically generate professional Pull Request descriptions using AI. Supports multiple AI providers including DeepSeek, OpenAI, OpenRouter, and Google Gemini.
 
+## 🚀 TL;DR
+
+```bash
+# install
+npm install -g pr-automator
+
+# config ai tokens (only onces)
+pra config
+
+# create pr
+pra create
+```
+
+**That's it!** 🎉
+
 ## ✨ Features
 
 - 🤖 **Multi-AI Provider Support**: DeepSeek, OpenAI, OpenRouter, Google Gemini
@@ -37,7 +52,8 @@ npm install pr-automator
 - Git
 - GitHub CLI (`gh`)
 
-#### Installing GitHub CLI
+<details>
+<summary><strong>📦 Installing GitHub CLI</strong></summary>
 
 **macOS:**
 ```bash
@@ -85,6 +101,8 @@ gh --version
 ```bash
 gh auth login
 ```
+
+</details>
 
 ### Setup
 
