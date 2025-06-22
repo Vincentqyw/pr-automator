@@ -35,10 +35,9 @@ npm install pr-automator
 
 **macOS:**
 ```bash
-# 使用Homebrew安装
 brew install gh
 
-# 或使用官方安装脚本
+# or
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update && sudo apt install gh
@@ -46,13 +45,12 @@ sudo apt update && sudo apt install gh
 
 **Windows:**
 ```bash
-# 使用winget
 winget install GitHub.cli
 
-# 或使用Chocolatey
+# or
 choco install gh
 
-# 或使用Scoop
+# or
 scoop install gh
 ```
 
@@ -66,18 +64,18 @@ sudo apt update && sudo apt install gh
 # CentOS/RHEL/Fedora
 sudo dnf install gh
 
-# 或使用官方安装脚本
+# or
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update && sudo apt install gh
 ```
 
-**验证安装:**
+**Verify:**
 ```bash
 gh --version
 ```
 
-**首次使用需要认证:**
+**Gh login**
 ```bash
 gh auth login
 ```
