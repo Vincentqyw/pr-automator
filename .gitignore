@@ -148,5 +148,4 @@ ehthumbs.db
 Thumbs.db
 
 # Temporary files
-pr_body.md 
-package-lock.json
+pr_body.md
